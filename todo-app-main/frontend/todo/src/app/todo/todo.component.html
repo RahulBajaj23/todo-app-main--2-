@@ -1,0 +1,116 @@
+<style>
+    .main {
+        font-family: 'Arial', sans-serif;
+        background-color: #d0dfed; /* Light grayish blue background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #3498db; /* Blue color */
+    }
+
+    .container {
+        width: 400px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #f5f5f5; /* Light gray background */
+        margin: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #2ecc71; /* Green color */
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #3498db; /* Blue border color */
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .alert {
+        font-size: 14px;
+        color: #e74c3c; /* Red color for alert */
+        border: 1px solid #c0392b; /* Darker red border color */
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 15px;
+        background-color: #f2dede; /* Light red background */
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #f39c12; /* Orange color for button */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #d35400; /* Darker orange on hover */
+    }
+</style>
+
+<div class="main">
+<ng-container *ngIf="todo.id > 0; else createTodo">
+    <h1>ToDo Update</h1>
+</ng-container>
+
+<ng-template #createTodo>
+    <h1>ToDo Create</h1>
+</ng-template>
+
+<div class="container">
+
+    <form (ngSubmit)="!todoForm.invalid && saveTodo()"  #todoForm="ngForm">
+        <fieldset class="form-group" *ngIf="todo.id != -1">
+            <label>ID</label>
+            <input type="text" [(ngModel)] = "todo.id" class="form-control" name="id" readonly="true">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>Description</label>
+            <input type="text" #description="ngModel" [(ngModel)] = "todo.description" class="form-control" name="description" required="required" minlength="3">
+        </fieldset>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter at least 3 charaters Description</div>
+        
+
+        <fieldset class="form-group">
+            <label>Target Date</label>
+            <input type="date" #targetDate="ngModel" [ngModel] = "todo.targetDate | date:'yyyy-MM-dd' " (ngModelChange) = "todo.targetDate = $event"  class="form-control" name="targetDate" required="required">
+        </fieldset>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter Valid Target Date</div>
+
+        <fieldset class="form-group">
+            <label>Status</label>
+            <select [(ngModel)]="todo.done" class="form-control" name="done">
+                <option [ngValue]="true">True</option>
+                <option [ngValue]="false">False</option>
+            </select>
+        </fieldset>
+        
+
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
+</div>

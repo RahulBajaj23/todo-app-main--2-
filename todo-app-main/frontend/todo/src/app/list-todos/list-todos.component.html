@@ -1,0 +1,111 @@
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .bg-light-green {
+            background-color: #d1f1d1;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .alert-success {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            margin: 2px;
+            cursor: pointer;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: #f0ad4e;
+            color: white;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<div class="bg-light-green">
+<h1>
+    My Todo's for {{ todos[0]?.username }}
+</h1>
+
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Target Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos" [ngClass]="{'bg-light-green': todo.done}">
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.description }}</td>
+                <td>{{ todo.done }}</td>
+                <td>{{ todo.targetDate | date }}</td>
+                <td>
+                    <button (click)="updateToDo(todo.id)" class="btn btn-success">Update</button>
+                </td>
+                <td>
+                    <button (click)="deleteToDo(todo.id, todo.description)" class="btn btn-warning">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <button (click)="addTodo()" class="btn btn-success">Add Task</button>
+    </div>
+</div>
+</div>
+

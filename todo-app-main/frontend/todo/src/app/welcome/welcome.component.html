@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy0q8L3ZLUF01Zwvcv3N2uF04d7RQ4Tk6"
+        crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+
+    <div class="container">
+        <p>Welcome {{ name }}!</p>
+        <p>Welcome to our awesome App. You can manage your todos <a routerLink="/todos">here</a>.</p>
+    </div>
+
+    <!-- <div class="container">
+        <p>Click here to get a customized welcome message</p>
+        <button (click)="getWelcomeMessage()" class="btn btn-success">Get Welcome Message</button>
+    </div>
+
+    <div class="container" *ngIf="welcomeMessageFromService">
+        <h2>Your Customized Welcome Message</h2>
+        {{ welcomeMessageFromService }}
+    </div> -->
+
+    <div class="container">
+        <p>Click here to get a customized welcome message with Parameter</p>
+        <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message with Parameter</button>
+    </div>
+
+    <div class="container" *ngIf="welcomeMessageWithParameterFromService">
+        <h2>Your Customized Welcome Message</h2>
+        {{ welcomeMessageWithParameterFromService }}
+    </div>
+
+    <!-- Additional Content Section -->
+    <!-- <div class="container mt-5">
+        <h2>Additional Section</h2>
+        <p>This is an additional content section for your page. You can add more content, sections, or features as needed.</p>
+    </div> -->
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Your App. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

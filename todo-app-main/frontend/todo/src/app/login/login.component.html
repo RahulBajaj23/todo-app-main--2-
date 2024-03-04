@@ -1,0 +1,95 @@
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('your-image-url') center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 400px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(228, 137, 199, 0.9); /* Light white background to make text readable */
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .alert-warning, .alert-success {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .register-button {
+            background-color: #3498db;
+        }
+
+        .register-button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Login</h1>
+
+    <div class="container">
+        <div class="alert alert-warning" *ngIf="invalidLogin == true">{{ errorMessage }}</div>
+        <div>
+            User Name: <input type="text" name="username" [(ngModel)]="username">
+            Password: <input type="password" name="password" [(ngModel)]="password">
+
+            <button (click)="handleLogin()">Login</button> 
+        </div>
+
+        <p>Don't have an account? <button class="register-button">Register</button></p>
+    </div>
+</body>
